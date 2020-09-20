@@ -1,1 +1,3 @@
 # LetCode
+
+## get new skill
