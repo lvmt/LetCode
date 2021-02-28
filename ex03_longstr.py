@@ -4,25 +4,36 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        result = []
+
+        '''移动窗口解法
+        '''
+        if not s:
+            return 0
         
-        tmp = []
-        for i in s:
-            if not i in tmp:
-                tmp.append(i)
+        if len(s) == 1:
+            return 1
+        
+        result_set = set()
+        max_n = 0
+        for i in range(len(s)):
+            if s[i] in result_set:
+                length = len(result_set)
+                max_n = length  if length > max_n else max_n
+                result_set.clear()
+                result_set.add(s[i])
             else:
-                result.append(tmp)
-                tmp = []
-                tmp.append(i)
-                
-        result.append(tmp)
+                result_set.add(s[i])
         
-        result.sort(key=lambda x: len(x))
-        print(len(result[-1]))
+        length = len(result_set)
+        max_n = length  if length > max_n else max_n  
+                
+        #print(max(record_length))
+        return max_n
     
-    
+                
+
 if __name__ == '__main__':
     #ll = 'abcabcbb'
-    ll = 'dvdf'
-    Solution().lengthOfLongestSubstring(ll)
+    ll = "auxj"
+    print(Solution().lengthOfLongestSubstring(ll))
     
